@@ -3,6 +3,7 @@ import Foundation
 enum TrackingQueryParamRemover {
     private static let removers: [QueryParamRemover] = [
         GoogleAnalyticsQueryParamRemover(),
+        TwitterQueryParamRemover(),
     ]
 
     /// Removes query parameters from the given URL that are known to be used for tracking.
@@ -17,7 +18,7 @@ enum TrackingQueryParamRemover {
         if var queryItems = components.queryItems {
             queryItems.removeAll(where: { queryItem in
                 Self.removers.contains { remover in
-                    remover.shouldRemove(queryItem: queryItem)
+                    remover.shouldRemove(queryItem: queryItem, from: url)
                 }
             })
 
@@ -33,14 +34,9 @@ enum TrackingQueryParamRemover {
 }
 
 protocol QueryParamRemover {
-    /// Describes whether the given query item should be removed.
+    /// Describes whether the given query item should be removed from the URL.
     ///
     /// - Parameter queryItem: the URLQueryItem to check
-    func shouldRemove(queryItem: URLQueryItem) -> Bool
-}
-
-struct GoogleAnalyticsQueryParamRemover: QueryParamRemover {
-    func shouldRemove(queryItem: URLQueryItem) -> Bool {
-        return queryItem.name.starts(with: "utm_")
-    }
+    /// - Parameter url: the URL the query item appears in
+    func shouldRemove(queryItem: URLQueryItem, from url: URL) -> Bool
 }
