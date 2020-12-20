@@ -10,22 +10,29 @@ enum TrackingQueryParamRemover {
     ///
     /// - Parameter url: the URL to remove known tracking parameters from
     /// - Returns: a URL with known tracking parameters removed
-    static func removeTrackingParameters(from url: URL) -> URL {
+    static func removeTrackingParameters(from url: URL, logger: Logger) -> URL {
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
+            logger.warn("Could not resolve components of URL")
             return url
         }
 
         if var queryItems = components.queryItems {
             queryItems.removeAll(where: { queryItem in
-                Self.removers.contains { remover in
-                    remover.shouldRemove(queryItem: queryItem, from: url)
+                logger.debug("Checking query item \(queryItem)")
+                return Self.removers.contains { remover in
+                    let shouldRemove = remover.shouldRemove(queryItem: queryItem, from: url)
+                    logger.debug("Remover \(remover.self) should remove? \(shouldRemove)")
+                    return shouldRemove
                 }
             })
 
             components.queryItems = queryItems.isEmpty ? nil : queryItems
+        } else {
+            logger.info("URL has no query parameters")
         }
 
         guard let cleanURL = components.url else {
+            logger.warn("Could not convert URL components into URL")
             return url
         }
 
