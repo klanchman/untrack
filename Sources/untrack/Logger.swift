@@ -1,3 +1,19 @@
+/*
+ Copyright 2020 Kyle Lanchman
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
 import Foundation
 
 struct Logger {
@@ -81,7 +97,7 @@ extension Logger {
     ///
     ///     logger.info("Hello \(world)")
     ///
-    /// Source: https://github.com/apple/swift-log/blob/974b90e00838f81741da77411f822d24fdba1120/Sources/Logging/Logging.swift#L473 
+    /// Source: https://github.com/apple/swift-log/blob/974b90e00838f81741da77411f822d24fdba1120/Sources/Logging/Logging.swift#L473
     struct Message: ExpressibleByStringLiteral, Equatable, CustomStringConvertible, ExpressibleByStringInterpolation {
         public typealias StringLiteralType = String
 
