@@ -8,8 +8,11 @@ enum TrackingQueryParamRemover {
 
     /// Removes query parameters from the given URL components that are known to be used for tracking.
     ///
-    /// - Parameter components: the URLComponents to remove known tracking parameters from
-    /// - Returns: a URL with known tracking parameters removed
+    /// - Parameters:
+    ///   - components: the URLComponents to remove known tracking parameters from
+    ///   - logger: a Logger
+    ///
+    /// - Returns: URLComponents with known tracking parameters removed
     static func removeTrackingParameters(from components: URLComponents, logger: Logger) -> URLComponents {
         var newComponents = components
 

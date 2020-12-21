@@ -16,7 +16,10 @@ struct Untrack: ParsableCommand {
 
     func run() throws {
         let logger = Logger(level: resolvedLogLevel)
-        let result = TrackingQueryParamRemover.removeTrackingParameters(from: url, logger: logger)
+
+        let reversed = URLReverser.tryReverse(components: url, logger: logger)
+        let result =
+            TrackingQueryParamRemover.removeTrackingParameters(from: reversed, logger: logger)
 
         guard let finalURL = result.url else {
             Self.exit(withError: Error.conversionError)
