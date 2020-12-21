@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "untrack",
+    products: [
+        .executable(name: "untrack", targets: ["untrack"])
+    ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "0.3.1")
