@@ -3,6 +3,7 @@ import Foundation
 enum URLReverser {
     private static let reversers: [URLReverserProtocol] = [
         ACLUURLReverser(),
+        OutlookSafelinksReverser(),
     ]
 
     /// Tries to reverse the given URL components, if possible.
@@ -41,4 +42,9 @@ protocol URLReverserProtocol {
     ///   - components: the URLComponents to reverse
     ///   - logger: a Logger
     func reverse(components: URLComponents, logger: Logger) throws -> URLComponents
+}
+
+enum URLReversalError: Error {
+    case invalidURL
+    case reversalFailure
 }
