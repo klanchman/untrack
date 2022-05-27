@@ -19,6 +19,7 @@ import Foundation
 enum URLReverser {
     private static let reversers: [URLReverserProtocol] = [
         OutlookSafelinksReverser(),
+        GoogleRedirectReverser(),
     ]
 
     /// Tries to reverse the given URL components, if possible.
