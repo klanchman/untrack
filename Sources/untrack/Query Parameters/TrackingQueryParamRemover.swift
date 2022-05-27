@@ -20,7 +20,6 @@ enum TrackingQueryParamRemover {
     private static let removers: [QueryParamRemover] = [
         GoogleAnalyticsQueryParamRemover(),
         TwitterQueryParamRemover(),
-        ACLUQueryParamRemover(),
     ]
 
     /// Removes query parameters from the given URL components that are known to be used for tracking.

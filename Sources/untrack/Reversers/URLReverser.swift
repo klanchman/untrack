@@ -18,7 +18,6 @@ import Foundation
 
 enum URLReverser {
     private static let reversers: [URLReverserProtocol] = [
-        ACLUURLReverser(),
         OutlookSafelinksReverser(),
     ]
 
