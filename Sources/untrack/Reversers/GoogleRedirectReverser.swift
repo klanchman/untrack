@@ -25,7 +25,7 @@ import Foundation
 struct GoogleRedirectReverser: URLReverserProtocol {
     private static let destinationURLQueryParamName = "q"
 
-    func canReverse(components: URLComponents) -> Bool {
+    func canReverse(components: URLComponents, logger: Logger) -> Bool {
         return validate(components: components)
     }
 
@@ -50,7 +50,6 @@ struct GoogleRedirectReverser: URLReverserProtocol {
     private func validate(components: URLComponents) -> Bool {
         return (components.host ?? "").hasSuffix("google.com")
             && components.path == "/url"
-            && getDestinationURL(from: components)?.isEmpty == false
     }
 
     private func getDestinationURL(from components: URLComponents) -> String? {
