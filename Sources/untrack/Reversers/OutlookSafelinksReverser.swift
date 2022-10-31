@@ -26,7 +26,7 @@ struct OutlookSafelinksReverser: URLReverserProtocol {
     private static let expectedHostEndsWith = "safelinks.protection.outlook.com"
     private static let destinationURLQueryParamName = "url"
 
-    func canReverse(components: URLComponents) -> Bool {
+    func canReverse(components: URLComponents, logger: Logger) -> Bool {
         return validate(components: components)
     }
 
@@ -50,7 +50,6 @@ struct OutlookSafelinksReverser: URLReverserProtocol {
 
     private func validate(components: URLComponents) -> Bool {
         return (components.host ?? "").hasSuffix(Self.expectedHostEndsWith)
-            && getDestinationURL(from: components)?.isEmpty == false
     }
 
     private func getDestinationURL(from components: URLComponents) -> String? {

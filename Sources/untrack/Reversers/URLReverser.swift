@@ -20,6 +20,7 @@ enum URLReverser {
     private static let reversers: [URLReverserProtocol] = [
         OutlookSafelinksReverser(),
         GoogleRedirectReverser(),
+        MandrillReverser(),
     ]
 
     /// Tries to reverse the given URL components, if possible.
@@ -31,7 +32,7 @@ enum URLReverser {
     /// - Returns: URLComponents that have been reversed if applicable
     static func tryReverse(components: URLComponents, logger: Logger) -> URLComponents {
         var reversed = components
-        if let reverser = reversers.first(where: { $0.canReverse(components: components) }) {
+        if let reverser = reversers.first(where: { $0.canReverse(components: components, logger: logger) }) {
             logger.info("Identified URL to reverse using \(reverser.self)")
             do {
                 reversed = try reverser.reverse(components: components, logger: logger)
@@ -50,7 +51,7 @@ protocol URLReverserProtocol {
     /// Checks whether the reverser thinks it can reverse the URL components.
     ///
     /// - Parameter components: the URLComponents to check
-    func canReverse(components: URLComponents) -> Bool
+    func canReverse(components: URLComponents, logger: Logger) -> Bool
 
     /// Attempts to reverse the URL components.
     ///
