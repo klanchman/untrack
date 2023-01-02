@@ -21,6 +21,7 @@ enum URLReverser {
         OutlookSafelinksReverser(),
         GoogleRedirectReverser(),
         MandrillReverser(),
+        CustomerIOReverser(),
     ]
 
     /// Tries to reverse the given URL components, if possible.
