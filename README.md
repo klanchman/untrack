@@ -45,3 +45,4 @@ Use the `--help` option to see other available options.
 - [Outlook Safe Links](https://support.microsoft.com/en-us/office/advanced-outlook-com-security-for-office-365-subscribers-882d2243-eab9-4545-a58a-b36fee4a46e2) (useful if you have an Outlook account managed by an organization where you cannot turn off this feature)
 - [Gmail click-time URL protection](https://support.google.com/mail/answer/10173182?hl=en)
 - [Mandrill click tracking](https://mailchimp.com/developer/transactional/docs/activity-reports/#click-tracking) (Mailchimp Transactional emails)
+- [Customer.io link tracking](https://customer.io/docs/link-tracking/)
